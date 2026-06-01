@@ -343,15 +343,21 @@ php bin/magento cache:flush
 
 ## Storefront
 
-(Add screenshot here)
+<img width="1917" height="966" alt="image" src="https://github.com/user-attachments/assets/e3633cde-fa7a-4447-bf29-5308efcd1f8b" />
+
 
 ## Admin Dashboard
 
-(Add screenshot here)
+<img width="1910" height="1030" alt="image" src="https://github.com/user-attachments/assets/219523b6-38b7-41b8-a62a-4fc84d55d692" />
+
+<img width="1919" height="969" alt="image" src="https://github.com/user-attachments/assets/f4c07907-4fd6-49c3-af3a-dbda9f9723d7" />
+
+
 
 ## OpenSearch Running
 
-(Add screenshot here)
+<img width="1908" height="1014" alt="image" src="https://github.com/user-attachments/assets/58e58464-7c59-4e6d-ba4d-e0a0fd25b2ad" />
+
 
 ---
 
