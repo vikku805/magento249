@@ -1,0 +1,14 @@
+/vendor/
+/generated/
+/var/
+/pub/static/*
+!/pub/static/.htaccess
+!/pub/static/deployed_version.txt
+
+/app/etc/env.php
+/auth.json
+
+/.idea/
+/.vscode/
+
+*.log
