@@ -6,7 +6,18 @@
 !/pub/static/deployed_version.txt
 
 /app/etc/env.php
+/app/etc/env.php.*
+/env.php.*
 /auth.json
+
+# Database dumps
+*.sql
+
+# Stray / renamed generated dir
+/generated-----/
+
+# Temp media
+/pub/media/tmp/
 
 /.idea/
 /.vscode/

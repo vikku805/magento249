@@ -1,0 +1,51 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    container_name: magento_app
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html
+    depends_on:
+      - db
+      - opensearch
+    networks: [magento]
+
+  db:
+    image: mariadb:11.4
+    container_name: magento_db
+    environment:
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: "1"
+      MARIADB_DATABASE: magento249
+    command: --max_allowed_packet=128M --log_bin_trust_function_creators=1
+    ports:
+      - "3308:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks: [magento]
+
+  opensearch:
+    image: opensearchproject/opensearch:3.3.2
+    container_name: magento_opensearch
+    environment:
+      - discovery.type=single-node
+      - DISABLE_SECURITY_PLUGIN=true
+      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock: { soft: -1, hard: -1 }
+      nofile:  { soft: 65536, hard: 65536 }
+    ports:
+      - "9201:9200"
+    volumes:
+      - osdata:/usr/share/opensearch/data
+    networks: [magento]
+
+volumes:
+  dbdata:
+  osdata:
+
+networks:
+  magento:
+    driver: bridge
