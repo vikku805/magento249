@@ -1,0 +1,7 @@
+.git
+var/cache
+var/page_cache
+var/session
+var/log
+generated
+pub/static/_cache
