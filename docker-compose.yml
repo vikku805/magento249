@@ -11,7 +11,14 @@ services:
     depends_on:
       - db
       - opensearch
-    networks: [magento]
+      - rabbitmq
+    extra_hosts:
+      # Map to the host's IPv4 gateway so the container can reach host services
+      # (e.g. the App Builder `aio app dev` server on :9080). Without this,
+      # host.docker.internal resolves to an unroutable IPv6 address here.
+      - "host.docker.internal:host-gateway"
+    networks:
+      - magento
 
   db:
     image: mariadb:11.4
@@ -24,7 +31,46 @@ services:
       - "3308:3306"
     volumes:
       - dbdata:/var/lib/mysql
-    networks: [magento]
+    networks:
+      - magento
+
+  odoo:
+    image: odoo:18
+    container_name: odoo
+    depends_on:
+      - odoo_db
+    ports:
+      - "8069:8069"
+    environment:
+      HOST: odoo_db
+      USER: odoo
+      PASSWORD: odoo
+    networks:
+      - magento
+
+  odoo_db:
+    image: postgres:16
+    container_name: odoo_db
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: odoo
+    volumes:
+      - odoo_db_data:/var/lib/postgresql/data
+    networks:
+      - magento
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: magento_rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    networks:
+      - magento
 
   opensearch:
     image: opensearchproject/opensearch:3.3.2
@@ -32,19 +78,25 @@ services:
     environment:
       - discovery.type=single-node
       - DISABLE_SECURITY_PLUGIN=true
-      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
+      - OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m
     ulimits:
-      memlock: { soft: -1, hard: -1 }
-      nofile:  { soft: 65536, hard: 65536 }
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
     ports:
       - "9201:9200"
     volumes:
       - osdata:/usr/share/opensearch/data
-    networks: [magento]
+    networks:
+      - magento
 
 volumes:
   dbdata:
   osdata:
+  odoo_db_data:
 
 networks:
   magento:
