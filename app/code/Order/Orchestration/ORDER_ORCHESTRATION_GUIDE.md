@@ -6,10 +6,6 @@ finally lands in **two** systems: **Odoo (ERP)** and **Medusa (OMS)**.
 
 Read it top to bottom — each step explains *what happens*, *which file does it*, and *why*.
 
-> ℹ️ **Note:** Ye Magento module is repo me hai. **App Builder side** (`order-sync` action, Odoo +
-> Medusa clients) alag repo me hai: https://github.com/vikku805/FirstAppBuilder
-> (`actions/order-sync/`). Niche jo `actions/...` paths hain wo us repo ke hain.
-
 ---
 
 ## 1. The big picture (in one breath)
@@ -252,18 +248,26 @@ Ek real run ke screenshots — setup se le kar order dono dashboards me dikhne t
 **Step A — Medusa OMS setup (admin account banao)**
 
 ![Medusa setup](docs/images/00-medusa-setup.png)
+<img width="1915" height="971" alt="Medusa_ss" src="https://github.com/user-attachments/assets/648f8419-80f3-4504-9656-d1de2a372453" />
+
 
 **Step B — RabbitMQ: order message queue me flow ho raha hai (`order.export`)**
 
 ![RabbitMQ dashboard](docs/images/01-rabbitmq.png)
+<img width="1907" height="976" alt="RabbitMQ_dasboard" src="https://github.com/user-attachments/assets/3b7d9c2b-c29c-47c2-8ae9-19885b95bded" />
+
 
 **Step C — Odoo (ERP): order Sales → Orders me aa gaya**
 
 ![Odoo Sales Orders](docs/images/02-odoo-orders.png)
+<img width="1905" height="957" alt="Odoo_ERP_Sales_order" src="https://github.com/user-attachments/assets/1d8befb0-f403-4d78-915e-ca55b6258645" />
+
 
 **Step D — Medusa (OMS): order Orders page me aa gaya (multi-channel ready)**
 
 ![Medusa Orders](docs/images/03-medusa-orders.png)
+<img width="1917" height="862" alt="medusa_order_capture" src="https://github.com/user-attachments/assets/4b5959a9-3fd2-4830-95a7-a0024c6c74d9" />
+
 
 > 🖼️ **Images add karne ke liye:** apne 4 screenshots ko `docs/images/` folder me **exact in
 > naam** se save karo — phir guide me automatically render ho jayenge:
