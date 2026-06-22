@@ -144,6 +144,9 @@ the `cron_schedule` table. For continuous reporting, run cron on a schedule.
 ---
 <img width="1902" height="962" alt="new_relic" src="https://github.com/user-attachments/assets/6058eca5-f588-4cd4-a469-546599d413ec" />
 
+<img width="1893" height="957" alt="image" src="https://github.com/user-attachments/assets/48b0919f-d6c6-4509-b9a2-8553614ffb71" />
+
+
 ## Security note
 
 The `.env` file holds a secret (your license key) and is git-ignored. Never commit
