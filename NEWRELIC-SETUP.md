@@ -142,6 +142,7 @@ the `cron_schedule` table. For continuous reporting, run cron on a schedule.
 | EU account, no data | Set `NEW_RELIC_HOST=collector.eu.nr-data.net` in `.env` and restart. |
 
 ---
+<img width="1902" height="962" alt="new_relic" src="https://github.com/user-attachments/assets/6058eca5-f588-4cd4-a469-546599d413ec" />
 
 ## Security note
 
