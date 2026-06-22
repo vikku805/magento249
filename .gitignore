@@ -10,6 +10,9 @@
 /env.php.*
 /auth.json
 
+# Local env (New Relic license key etc.) — never commit
+/.env
+
 # Database dumps
 *.sql
 
@@ -21,5 +24,6 @@
 
 /.idea/
 /.vscode/
+/.claude/
 
 *.log
