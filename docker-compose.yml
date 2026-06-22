@@ -8,6 +8,15 @@ services:
       - "8080:80"
     volumes:
       - ./:/var/www/html
+    environment:
+      # New Relic PHP agent (APM). Values come from a git-ignored .env file.
+      # The license key is required; the rest have sensible defaults.
+      NEW_RELIC_LICENSE_KEY: "${NEW_RELIC_LICENSE_KEY:-}"
+      NEW_RELIC_APPNAME: "${NEW_RELIC_APPNAME:-Magento 2.4.9 (Local Docker)}"
+      NEW_RELIC_ENABLED: "${NEW_RELIC_ENABLED:-true}"
+      NEW_RELIC_DISTRIBUTED_TRACING_ENABLED: "${NEW_RELIC_DISTRIBUTED_TRACING_ENABLED:-true}"
+      # EU data center only: uncomment in .env -> NEW_RELIC_HOST=collector.eu.nr-data.net
+      NEW_RELIC_HOST: "${NEW_RELIC_HOST:-}"
     depends_on:
       - db
       - opensearch
